@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workundo_hrms/utils/theme.dart';
-import 'package:workundo_hrms/views/splash/splash_screen.dart';
+import 'package:workundo_hrms/views/screens/Start/start_screen.dart';
 
 
 
@@ -31,9 +31,9 @@ class MyAppState extends State<MyApp> {
       builder: (context,child){
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'GenWorks',
+          title: 'Workundo',
           theme: AppTheme.appTheme,
-          home: const HomeScreen(),
+          home: const StartScreen(),
         );
       },
     );

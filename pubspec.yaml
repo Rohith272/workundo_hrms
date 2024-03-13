@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
+  sdk: '>=3.2.5 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -66,6 +66,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Syncopate-Regular.ttf
         - asset: assets/fonts/Syncopate-Bold.ttf
+
+    - family: Clash
+      fonts:
+        - asset: assets\fonts\ClashDisplay_Complete\Fonts\OTF\ClashDisplay-Regular.otf
+
+    - family: Supreme
+      fonts:
+        - asset: assets\fonts\Supreme_Complete\Fonts\Variable\Supreme-Variable.ttf
 
   assets:
     - assets/images/
