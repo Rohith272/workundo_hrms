@@ -8,9 +8,9 @@ class AppTheme {
 
   static final ThemeData appTheme = ThemeData(
     appBarTheme: const AppBarTheme(
-      titleTextStyle: TextStyle(color:primaryTeal,fontFamily: "Inter",fontWeight: FontWeight.w500,fontSize: 18 ),
-      color: primaryTeal,
-      iconTheme: IconThemeData(color: primaryTeal),
+      titleTextStyle: TextStyle(color:Colors.black,fontFamily: "Inter",fontWeight: FontWeight.w500,fontSize: 18 ),
+      color: Colors.black,
+      iconTheme: IconThemeData(color: Colors.black),
     ),
     colorScheme: const ColorScheme.light(
       primary: primaryTeal,

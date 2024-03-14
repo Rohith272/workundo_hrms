@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:workundo_hrms/controller/auth/authentication_controller.dart';
 import 'package:workundo_hrms/utils/images.dart';
 import 'package:workundo_hrms/views/screens/Login/login.dart';
 import '../../../../utils/colors.dart';
@@ -15,6 +16,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
 
   String? name;
+  final AuthController authController = Get.put(AuthController());
 
   @override
   void initState() {
@@ -92,8 +94,9 @@ class _StartScreenState extends State<StartScreen> {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: (){
-                  Get.to(const LoginScreen());
+                behavior: HitTestBehavior.translucent,
+                onTap: () async {
+                  await authController.checkForSession();
                 },
                 child: Container(
                   margin: const EdgeInsets.only(left: 12, right: 12, bottom: 20),

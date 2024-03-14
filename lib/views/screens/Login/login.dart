@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:workundo_hrms/controller/auth/authentication_controller.dart';
 import 'package:workundo_hrms/utils/images.dart';
 import 'package:workundo_hrms/views/widgets/custom_text_field.dart';
 import '../../../../utils/colors.dart';
@@ -13,6 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final AuthController authController = Get.put(AuthController());
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -103,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         margin: EdgeInsets.only(left: 13, right: 13,top: 5),
                         child: CustomTextField(
                           textEditingController: usernameController,
-                          focusNode: _focusNode,
+                          // focusNode: _focusNode,
                           hintText: '',
                         ),
                       ),
@@ -124,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         margin: const EdgeInsets.only(left: 13, right: 13,top: 5),
                         child: CustomTextField(
                           textEditingController: passwordController,
-                          focusNode: _focusNode,
+                          // focusNode: _focusNode,
                           hintText: '',
                         ),
                       ),
@@ -158,29 +162,35 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 8.75),
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        height: 28,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: loginBorderGrey,
-                                width: 1
-                            ),
-                            color: Colors.black
-                        ),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                            fontFamily: 'Clash',
-                            fontSize: 12.42,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            decoration: TextDecoration.none,
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () async {
+                          await authController.login(usernameController.text, passwordController.text);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 8.75),
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          height: 28,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  color: loginBorderGrey,
+                                  width: 1
+                              ),
+                              color: Colors.black
                           ),
-                          textAlign: TextAlign.center,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "Login",
+                            style: TextStyle(
+                              fontFamily: 'Clash',
+                              fontSize: 12.42,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                              decoration: TextDecoration.none,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       )
                     ],
