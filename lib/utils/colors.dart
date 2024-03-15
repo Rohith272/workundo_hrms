@@ -7,6 +7,7 @@ const greenGradientTop = Color(0xFFA9CC3C);
 const greenGradientBottom = Color(0xFF47C633);
 const loginBorderGrey = Color(0xFF454545);
 const textFieldBlack = Color(0xFF131313);
+const unReadContainerColor = Color(0xFFA9CC3C);
 
 
 

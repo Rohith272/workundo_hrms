@@ -56,7 +56,6 @@ class AuthController extends GetxController{
   }
 
   checkForSession() async {
-
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     String? name = preferences.getString("token");
     if(name != null){
@@ -65,11 +64,13 @@ class AuthController extends GetxController{
         Get.to(const HomeScreen());
       }
       else{
-        Get.to(const LoginScreen());
+        Get.to(const HomeScreen());
+        // Get.to(const LoginScreen());
       }
     }
     else{
-      Get.to(const LoginScreen());
+      Get.to(const HomeScreen());
+      // Get.to(const LoginScreen());
     }
   }
 
