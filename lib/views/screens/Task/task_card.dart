@@ -5,12 +5,12 @@ import 'package:workundo_hrms/utils/colors.dart';
 import 'package:workundo_hrms/utils/constants.dart';
 import 'package:workundo_hrms/utils/images.dart';
 
-class ProjectCard extends StatelessWidget {
+class TaskCard extends StatelessWidget {
 
   final List<ProjectRecords> projectList;
   final int index;
 
-  const ProjectCard({
+  const TaskCard({
     super.key,
     required this.projectList,
     required this.index
@@ -43,7 +43,7 @@ class ProjectCard extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                        project.projectName ?? "---",
+                      project.projectName ?? "---",
                       style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Clash',
@@ -71,9 +71,9 @@ class ProjectCard extends StatelessWidget {
                       ),
                       if(project.projectStatusId != 3 || project.projectStatusId != 3)
                         Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: daysLeftWidget(project.endDate ?? ''),
-                      )
+                          margin: const EdgeInsets.only(left: 10),
+                          child: daysLeftWidget(project.endDate ?? ''),
+                        )
                       else
                         Container(
                           margin: const EdgeInsets.only(left: 10),

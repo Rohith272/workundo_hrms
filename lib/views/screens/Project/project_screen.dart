@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:workundo_hrms/controller/project/project_controller.dart';
+import 'package:workundo_hrms/model/response/project_list_response.dart';
 import 'package:workundo_hrms/views/screens/Project/project_card.dart';
 
 class ProjectScreen extends StatefulWidget {
@@ -15,16 +17,35 @@ class _ProjectScreenState extends State<ProjectScreen> {
 
 
   final _scrollController = ScrollController();
+  final ProjectController projectController = Get.put(ProjectController());
+
+
+  List<ProjectRecords> projectList = <ProjectRecords>[];
+  var isNormalLoading = true.obs;
 
   @override
   void initState() {
     _scrollController.addListener(_scrollListener);
+    getAndPrefillData();
   }
 
   void _scrollListener() {
     if (_scrollController.offset == _scrollController.position.maxScrollExtent){
       // _loadMoreVertical();
     }
+  }
+
+  Future<void> getAndPrefillData() async {
+    await projectController.getProjectList();
+    List<ProjectRecords> tList = [];
+    for (int i = 0; i < projectController.records.length; i++) {
+      tList.add(projectController.records[i]);
+    }
+    projectList.addAll(tList);
+    isNormalLoading.value = false;
+    setState(() {
+      projectController.pageIndex.value++;
+    });
   }
 
   @override
@@ -54,14 +75,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                 reverse: false,
                                 padding: const EdgeInsets.only(top: 12.92),
                                 shrinkWrap: true,
-                                itemCount: 8,
+                                itemCount: projectList.length,
                                 separatorBuilder: (context, index) {
                                   return const SizedBox(
                                     height: 12.92,
                                   );
                                 },
                                 itemBuilder: (context, index) {
-                                  return ProjectCard();
+                                  return ProjectCard(projectList: projectList, index: index,);
                                 },
                               ),
                               // Container(

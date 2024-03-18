@@ -5,7 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
 import 'package:http/http.dart';
 import 'package:http/src/response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workundo_hrms/model/response/login_response.dart';
+import 'package:workundo_hrms/model/response/pending_count_response.dart';
+import 'package:workundo_hrms/model/response/project_list_response.dart';
 import 'package:workundo_hrms/model/response/session_response.dart';
 import 'package:workundo_hrms/service/api_service.dart';
 import 'package:workundo_hrms/service/api_urls.dart';
@@ -73,6 +76,72 @@ class APIHelper {
       String errorMessage = ExceptionHandlers().getExceptionString(e);
       showToast(message: errorMessage);
       print("API error: $errorMessage");
+    }
+  }
+
+  Future<ProjectListResponse?> getProjectList() async{
+    final String url = baseUrl + APIUrls.getProjectList;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString("token");
+
+    try {
+      headers['Authorization'] = token ?? "";
+
+      Response? response = await APIService().getAPICall(url, headers);
+      var responseData = json.decode(response!.body);
+
+      if (response.statusCode == 200) {
+        return ProjectListResponse.fromJson(responseData);
+      } else if (responseData != null &&
+          responseData.contains("errorMessage")) {
+        showToast(message: responseData["errorMessage"]);
+        return null;
+      } else {
+        showToast(message: "Something went wrong!");
+      }
+      return null;
+    } catch (e) {
+      print("Error type: ${e.runtimeType..toString()}");
+      String errorMessage = ExceptionHandlers().getExceptionString(e);
+      showToast(message: errorMessage);
+      print("API error: $errorMessage");
+      if (e is FormatException) {
+        // goToLogin();
+      }
+    }
+  }
+
+  Future<PendingCountResponse?> getPendingCount() async{
+    final String url = baseUrl + APIUrls.pendingCount;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString("token");
+
+    try {
+      headers['Authorization'] = token ?? "";
+
+      Response? response = await APIService().getAPICall(url, headers);
+      var responseData = json.decode(response!.body);
+
+      if (response.statusCode == 200) {
+        return PendingCountResponse.fromJson(responseData);
+      } else if (responseData != null &&
+          responseData.contains("errorMessage")) {
+        showToast(message: responseData["errorMessage"]);
+        return null;
+      } else {
+        showToast(message: "Something went wrong!");
+      }
+      return null;
+    } catch (e) {
+      print("Error type: ${e.runtimeType..toString()}");
+      String errorMessage = ExceptionHandlers().getExceptionString(e);
+      showToast(message: errorMessage);
+      print("API error: $errorMessage");
+      if (e is FormatException) {
+        // goToLogin();
+      }
     }
   }
 }

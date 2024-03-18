@@ -18,8 +18,8 @@ class AuthController extends GetxController{
 
     if (loginResponse != null) {
       if (loginResponse.success == true) {
-        Get.off(const HomeScreen());
         prefs.setString("token", loginResponse.token ?? "");
+        Get.off(const HomeScreen());
         // if (kDebugMode) {
         //   print('LOGGED IN USER ID ==== ${loginResponse.employeeId}');
         // }
@@ -61,16 +61,16 @@ class AuthController extends GetxController{
     if(name != null){
       SessionResponse? response = await APIHelper().validateSession(name);
       if(response?.success ?? false){
-        Get.to(const HomeScreen());
+        Get.to(HomeScreen());
       }
       else{
-        Get.to(const HomeScreen());
-        // Get.to(const LoginScreen());
+        // Get.to(const HomeScreen());
+        Get.to(const LoginScreen());
       }
     }
     else{
-      Get.to(const HomeScreen());
-      // Get.to(const LoginScreen());
+      // Get.to(const HomeScreen());
+      Get.to(const LoginScreen());
     }
   }
 
