@@ -33,19 +33,23 @@ class PendingCountResponse {
 class CountRecords {
 
   int? pendingProjectCount;
+  int? pendingTaskCount;
 
   CountRecords(
       {
-        this.pendingProjectCount
+        this.pendingProjectCount,
+        this.pendingTaskCount
       });
 
   CountRecords.fromJson(Map<String, dynamic> json) {
     pendingProjectCount = json['pending_project_count'];
+    pendingTaskCount = json['pending_task_count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['pending_project_count'] = pendingProjectCount;
+    data['pending_task_count'] = pendingTaskCount;
     return data;
   }
 }

@@ -14,6 +14,7 @@ class ProjectController extends GetxController{
   ProjectListResponse? projectListResponse;
   PendingCountResponse? pendingCountResponse;
   var projectCount = 0.obs;
+  var taskCount = 0.obs;
 
   getProjectList() async {
     try {
@@ -36,6 +37,7 @@ class ProjectController extends GetxController{
         pendingRecords.value = response.records ?? [];
         pendingCountResponse = response;
         projectCount.value = pendingRecords.value[0].pendingProjectCount ?? 0;
+        taskCount.value = pendingRecords.value[0].pendingTaskCount ?? 0;
         isHomeLoading.value = false;
         return pendingCountResponse;
       }

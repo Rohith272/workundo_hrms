@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:workundo_hrms/controller/project/project_controller.dart';
 import 'package:workundo_hrms/model/response/project_list_response.dart';
 import 'package:workundo_hrms/views/screens/Project/project_card.dart';
+import 'package:workundo_hrms/views/widgets/custom_loading_indicator.dart';
 
 class ProjectScreen extends StatefulWidget {
   const ProjectScreen({Key? key}) : super(key: key);
@@ -37,6 +38,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
 
   Future<void> getAndPrefillData() async {
     await projectController.getProjectList();
+    await projectController.getPendingCount();
     List<ProjectRecords> tList = [];
     for (int i = 0; i < projectController.records.length; i++) {
       tList.add(projectController.records[i]);
@@ -85,10 +87,10 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   return ProjectCard(projectList: projectList, index: index,);
                                 },
                               ),
-                              // Container(
-                              //   height: 60,
-                              //   child: isLoading.value ? const CircularProgressIndicator() : Container(),
-                              // ),
+                              Container(
+                                height: MediaQuery.of(context).size.height * 0.5,
+                                child: isNormalLoading.value ? const CustomLoadingIndicator() : Container(),
+                              ),
                             ],
                           ),
                         ),

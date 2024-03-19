@@ -5,4 +5,5 @@ class APIUrls{
   static const String validateSession = "/validateSession";
   static const String getProjectList = "/getProjects";
   static const String pendingCount = "/getProjectPendingCount";
+  static const String getTaskList = "/getTasks";
 }

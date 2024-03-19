@@ -192,6 +192,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  loading_indicator:
+    dependency: "direct main"
+    description:
+      name: loading_indicator
+      sha256: a101ffb2aa3e646137d7810bfa90b50525dd3f72c01235b6df7491cf6af6f284
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   matcher:
     dependency: transitive
     description:
@@ -344,6 +352,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  simple_gesture_detector:
+    dependency: transitive
+    description:
+      name: simple_gesture_detector
+      sha256: ba2cd5af24ff20a0b8d609cec3f40e5b0744d2a71804a2616ae086b9c19d19a3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -381,6 +397,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  table_calendar:
+    dependency: "direct main"
+    description:
+      name: table_calendar
+      sha256: "3f7950145168251aad4fa6c0a914b5ef4e9a82fa365bb349c3ac5378f866e771"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   term_glyph:
     dependency: transitive
     description:

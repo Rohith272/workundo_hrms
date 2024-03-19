@@ -72,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: const BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white, // Set your desired border color here
-                          width: 0.16, // Set the width of the border
+                          color: Colors.white,
+                          width: 0.16,
                         ),
                       ),
                     ),
@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 12.5,
                                       height: 12.5,
                                       child: Text(
-                                        "4",
+                                        projectController.taskCount.value.toString(),
                                         style: TextStyle(
                                           fontFamily: 'Clash',
                                           fontWeight: routerController.indexStack.last == Screens.taskScreen ? FontWeight.w600 : FontWeight.w400,

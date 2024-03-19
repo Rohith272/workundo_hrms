@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:workundo_hrms/model/response/project_list_response.dart';
+import 'package:workundo_hrms/model/response/task_list_response.dart';
 import 'package:workundo_hrms/utils/colors.dart';
 import 'package:workundo_hrms/utils/constants.dart';
 import 'package:workundo_hrms/utils/images.dart';
 
 class TaskCard extends StatelessWidget {
 
-  final List<ProjectRecords> projectList;
+  final List<TaskRecords> taskList;
   final int index;
 
   const TaskCard({
     super.key,
-    required this.projectList,
+    required this.taskList,
     required this.index
   });
 
   @override
   Widget build(BuildContext context){
-    ProjectRecords project = projectList[index];
+    TaskRecords task = taskList[index];
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       child: Container(
@@ -43,7 +43,7 @@ class TaskCard extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      project.projectName ?? "---",
+                      task.taskName ?? "---",
                       style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Clash',
@@ -57,8 +57,23 @@ class TaskCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Text(
+                          task.taskType ?? "----",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Clash',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 8.33,
+                            decoration: TextDecoration.none,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
                       Text(
-                        "${parseToDay(project.startDate ?? "")} - ${parseToDay(project.endDate ?? "")}",
+                        "${parseToDay(task.startDate ?? "")} - ${parseToDay(task.endDate ?? "")}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontFamily: 'Clash',
@@ -69,16 +84,16 @@ class TaskCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                      if(project.projectStatusId != 3 || project.projectStatusId != 3)
+                      if(task.taskStatusId != 3 || task.taskStatusId != 3)
                         Container(
                           margin: const EdgeInsets.only(left: 10),
-                          child: daysLeftWidget(project.endDate ?? ''),
+                          child: daysLeftWidget(task.endDate ?? ''),
                         )
                       else
                         Container(
                           margin: const EdgeInsets.only(left: 10),
                           child: Text(
-                            project.projectStatusName ?? '----',
+                            task.taskStatusName ?? '----',
                             style: const TextStyle(
                               color: statusCompleteGreen,
                               fontFamily: 'Clash',
