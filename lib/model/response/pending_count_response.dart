@@ -34,22 +34,30 @@ class CountRecords {
 
   int? pendingProjectCount;
   int? pendingTaskCount;
+  String? checkIn;
+  String? checkOut;
 
   CountRecords(
       {
         this.pendingProjectCount,
-        this.pendingTaskCount
+        this.pendingTaskCount,
+        this.checkIn,
+        this.checkOut,
       });
 
   CountRecords.fromJson(Map<String, dynamic> json) {
     pendingProjectCount = json['pending_project_count'];
     pendingTaskCount = json['pending_task_count'];
+    checkIn = json['check_in_time'];
+    checkOut = json['check_out_time'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['pending_project_count'] = pendingProjectCount;
     data['pending_task_count'] = pendingTaskCount;
+    data['check_in_time'] = checkIn;
+    data['check_out_time'] = checkOut;
     return data;
   }
 }

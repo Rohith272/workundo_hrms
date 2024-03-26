@@ -41,6 +41,7 @@ class _TaskScreenState extends State<TaskScreen> {
   Future<void> getAndPrefillData() async {
     await taskController.getTaskList();
     await projectController.getPendingCount();
+    setState(() {});
     List<TaskRecords> tList = [];
     for (int i = 0; i < taskController.records.length; i++) {
       tList.add(taskController.records[i]);

@@ -146,8 +146,8 @@ class APIHelper {
     }
   }
 
-  Future<PendingCountResponse?> getPendingCount() async{
-    final String url = baseUrl + APIUrls.pendingCount;
+  Future<PendingCountResponse?> getBasicDetails() async{
+    final String url = baseUrl + APIUrls.basicDetails;
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String? token = prefs.getString("token");
@@ -179,5 +179,65 @@ class APIHelper {
     }
   }
 
+  Future<bool> checkIn() async {
+    final String url = baseUrl + APIUrls.checkIn;
 
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString("token");
+    String body = json.encode({"sessionId": token});
+
+    try {
+      headers['Authorization'] = token ?? "";
+
+      Response? response = await APIService().postAPICall(url, body,headers);
+      var responseData = json.decode(response!.body);
+
+      if (response.statusCode == 200) {
+        return responseData.isSuccess;
+      } else if (responseData != null &&
+          responseData.contains("errorMessage")) {
+        showToast(message: responseData["errorMessage"]);
+        return false;
+      } else {
+        showToast(message: "Something went wrong!");
+        return false;
+      }
+    } catch (e) {
+      if (e is FormatException) {
+        // goToLogin();
+      }
+      // Return a default value in case of error
+      return false;
+    }
+  }
+
+  Future<bool> checkOut() async {
+    final String url = baseUrl + APIUrls.checkOut;
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString("token");
+    String body = json.encode({"sessionId": token});
+
+    try {
+      headers['Authorization'] = token ?? "";
+
+      Response? response = await APIService().postAPICall(url, body,headers);
+      var responseData = json.decode(response!.body);
+
+      if (response.statusCode == 200) {
+        return responseData.isSuccess;
+      } else {
+        showToast(message: "Something went wrong!");
+        return false;
+      }
+    } catch (e) {
+      if (e is FormatException) {
+        // goToLogin();
+      }
+      // Return a default value in case of error
+      return false;
+    }
+  }
 }

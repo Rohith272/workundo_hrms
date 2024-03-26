@@ -39,6 +39,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
   Future<void> getAndPrefillData() async {
     await projectController.getProjectList();
     await projectController.getPendingCount();
+    setState(() {});
     List<ProjectRecords> tList = [];
     for (int i = 0; i < projectController.records.length; i++) {
       tList.add(projectController.records[i]);
